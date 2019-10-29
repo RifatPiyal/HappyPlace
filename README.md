@@ -1,2 +1,2 @@
 # HappyPlace
- An Online Couseling Service
+ An Online Counselling Service
