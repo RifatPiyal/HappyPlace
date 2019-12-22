@@ -33,12 +33,28 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
+    'payments.apps.PaymentsConfig',
+    'teacher.apps.TeacherConfig',
+    'student.apps.StudentConfig',
+    'counselorchange.apps.CounselorchangeConfig',
+    'chat.apps.ChatConfig',
+    'glogin',
+    'crispy_forms',
+
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'channels',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +72,7 @@ ROOT_URLCONF = 'happyplace.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,6 +86,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'happyplace.wsgi.application'
+ASGI_APPLICATION = 'happyplace.routing.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 
 # Database
@@ -121,3 +147,37 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'blog-dashboard'
+LOGIN_URL = 'login'
+
+# Forget password
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'PIYALR04@GMAIL.COM'
+EMAIL_HOST_PASSWORD = 'nwyrjdnzwazhhejw'
+
+STRIPE_SECRET_KEY = 'sk_test_pgGQGoGMceIn9r3kvQNCsia700a0iGm0bd'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_bdBxb52qZWTx9FK2kFjAQ7MH00kT40EVtp'
+
+# Django all_auth settings
+
+AUTHENTICATION_BACKENDS = (
+    # needed to login by username in Django admin, regardless of 'allauth'
+    'django.contrib.auth.backends.ModelBackend',
+
+    # allauth specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+
+
+
