@@ -36,14 +36,23 @@ INSTALLED_APPS = [
     'payments.apps.PaymentsConfig',
     'schedule.apps.ScheduleConfig',
     'chat.apps.ChatConfig',
+    'glogin',
     'crispy_forms',
+
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'channels',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -145,5 +154,21 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'blog-dashboard'
 LOGIN_URL = 'login'
 
+
 STRIPE_SECRET_KEY = 'sk_test_pgGQGoGMceIn9r3kvQNCsia700a0iGm0bd'
 STRIPE_PUBLISHABLE_KEY = 'pk_test_bdBxb52qZWTx9FK2kFjAQ7MH00kT40EVtp'
+
+# Django all_auth settings
+
+AUTHENTICATION_BACKENDS = (
+    # needed to login by username in Django admin, regardless of 'allauth'
+    'django.contrib.auth.backends.ModelBackend',
+
+    # allauth specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+
+
+
