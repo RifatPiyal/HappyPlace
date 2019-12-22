@@ -154,6 +154,13 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'blog-dashboard'
 LOGIN_URL = 'login'
 
+# Forget password
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'PIYALR04@GMAIL.COM'
+EMAIL_HOST_PASSWORD = 'nwyrjdnzwazhhejw'
 
 STRIPE_SECRET_KEY = 'sk_test_pgGQGoGMceIn9r3kvQNCsia700a0iGm0bd'
 STRIPE_PUBLISHABLE_KEY = 'pk_test_bdBxb52qZWTx9FK2kFjAQ7MH00kT40EVtp'
