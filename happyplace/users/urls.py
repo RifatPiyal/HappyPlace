@@ -3,7 +3,8 @@ from users import views
 
 #  Url paths of the website with naming
 urlpatterns = [
-    path('profile/', views.profile, name='user-profile'),
+    path('profile/', views.profile, name='profile'),
+
     ]
 
 

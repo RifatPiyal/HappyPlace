@@ -44,6 +44,10 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('accounts/', include('allauth.urls')),
     path('glogin/', TemplateView.as_view(template_name="glogin/index.html")),
+    path('student/', include("student.urls")),
+    path('teacher/', include("teacher.urls")),
+    path('counselorchange/', include("counselorchange.urls")),
+
 
 
 ]

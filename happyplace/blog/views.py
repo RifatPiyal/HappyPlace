@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+
+#  request and the html files locations to render
 
 
 def home(request):
@@ -25,6 +28,11 @@ def login(request):
     return render(request, 'blog/login.html')
 
 
+def individual(request):
+    return render(request, 'blog/Quesform.html')
+
+
+@login_required
 def dashboard(request):
     return render(request, 'blog/dashboard.html')
 
@@ -35,3 +43,5 @@ def c_dashboard(request):
 
 def loginCounselor(request):
     return render(request, 'blog/loginCounselor.html')
+
+

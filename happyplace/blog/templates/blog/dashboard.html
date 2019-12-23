@@ -1,24 +1,9 @@
-<!--
-=========================================================
- Material Dashboard - v2.1.1
-=========================================================
-
- Product Page: https://www.creative-tim.com/product/material-dashboard
- Copyright 2019 Creative Tim (https://www.creative-tim.com)
- Licensed under MIT (https://github.com/creativetimofficial/material-dashboard/blob/master/LICENSE.md)
-
- Coded by Creative Tim
-
-=========================================================
-
- The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
-
 <!doctype html>
 {% load static %}
 <html lang="en">
 
 <head>
-  <title>User Dashboard</title>
+  <title>{{ user.username}}</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
@@ -42,23 +27,23 @@
       Tip 2: you can also add an image using data-image tag
   -->
       <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-          HP
+        <a href="http://localhost:8000/blog/" class="simple-text logo-mini">
+
         </a>
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+        <a href="http://localhost:8000/blog/" class="simple-text logo-normal">
           Happy Place
         </a>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item active  ">
-            <a class="nav-link" href="#0">
+            <a class="nav-link" href="http://localhost:8000/users/profile/">
               <i class="material-icons">Account </i>
               <p>Account Settings</p>
             </a>
           </li>
             <li class="nav-item active">
-            <a class="nav-link" href="#0">
+            <a class="nav-link" href="http://localhost:8000/chat/">
               <i class="material-icons">Text</i>
               <p>Text Message</p>
             </a>
@@ -76,12 +61,12 @@
             </a>
           </li>
             <li class="nav-item active  ">
-            <a class="nav-link" href="#0">
+            <a class="nav-link" href="http://localhost:8000/counselorchange/">
               <i class="material-icons">Counselor</i>
               <p>Change Counselor</p>
             </a>
           </li><li class="nav-item active  ">
-            <a class="nav-link" href="#0">
+            <a class="nav-link" href="http://localhost:8000/payments/">
               <i class="material-icons">Billing </i>
               <p>Billing Option</p>
             </a>
@@ -102,11 +87,17 @@
               <p>Counseling</p>
             </a>
           </li>
-            <li class="nav-item active  ">
-            <a class="nav-link" href="#0">
-              <i class="material-icons">Logout</i>
-              <p>Logout</p>
-            </a>
+          <li class="nav-item active  ">
+            {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'logout' %}">
+                  <i class="material-icons">Logout</i>
+                  <p>Logout</p>
+
+                {% else %}
+              <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+              <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                {% endif %}
+
           </li>
           <!-- your sidebar here -->
             
@@ -118,7 +109,8 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Dashboard</a>
+            <a class="navbar-brand" href="#pablo">Dashboard
+            </a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
